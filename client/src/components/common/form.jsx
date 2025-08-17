@@ -1,8 +1,16 @@
-import { Input } from "postcss";
+import { Input } from "../ui/input";
+
 import { Label } from "../ui/label";
 import { SelectTrigger, SelectValue } from "@radix-ui/react-select";
 
-function CommonForm({ formControls }) {
+function CommonForm({
+  formControls,
+  formData,
+  setFormData,
+  onSubmit,
+  buttonText,
+  isBtnDisabled,
+}) {
   // .name .label .componentType taking from index.js of config folder
 
   function renderInputsByComponentType(getControlItem) {
@@ -17,13 +25,28 @@ function CommonForm({ formControls }) {
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             type={getControlItem.type}
+            value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
 
         break;
       case "select":
         element = (
-          <Select>
+          <Select
+            onValueChange={(value) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: value,
+              })
+            }
+            value={value}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>
@@ -46,6 +69,13 @@ function CommonForm({ formControls }) {
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.id}
+            value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
 
@@ -58,6 +88,13 @@ function CommonForm({ formControls }) {
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
             type={getControlItem.type}
+            value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
         break;
@@ -67,7 +104,7 @@ function CommonForm({ formControls }) {
   }
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5" key={controlItem.name}>
