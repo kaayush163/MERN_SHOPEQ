@@ -17,15 +17,15 @@ import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
 
 function App() {
-  // const isAuthenticated = false;
-  // const user = null;
+  const isAuthenticated = false;
+  const user = null;
 
   //  test with dummy default value
-  const isAuthenticated = true;
-  const user = {
-    name: "aayush",
-    role: "admin",
-  };
+  // const isAuthenticated = true;
+  // const user = {
+  //   name: "aayush",
+  //   role: "admin",
+  // };
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
