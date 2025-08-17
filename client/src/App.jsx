@@ -14,6 +14,7 @@ import ShoppingCheckout from "./pages/view-shopping/checkout";
 import ShoppingHome from "./pages/view-shopping/home";
 import ShoppingListing from "./pages/view-shopping/listing";
 import CheckAuth from "./components/common/check-auth";
+import UnauthPage from "./pages/unauth-page";
 
 function App() {
   // const isAuthenticated = false;
