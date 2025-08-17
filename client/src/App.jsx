@@ -1,5 +1,7 @@
-const { Route, Routes } = require("react-router-dom");
-const { default: AuthLayout } = require("./components/auth/layout");
+import { Route, Routes } from "react-router-dom";
+import AuthLayout from "./components/auth/layout";
+import AuthLogin from "./pages/auth/login";
+import AuthRegister from "./pages/auth/register";
 
 function App() {
   return (
@@ -8,10 +10,12 @@ function App() {
       <Routes>
         <Route path="/auth" element={<AuthLayout />}>
           {/* children of auth/ register, login like this */}
-          <Route path="/login" />
-          <Route path="register" />
+          <Route path="login" element={<AuthLogin />} />
+          <Route path="register" element={<AuthRegister />} />
         </Route>
       </Routes>
     </div>
   );
 }
+
+export default App;
