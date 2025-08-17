@@ -83,6 +83,8 @@ function App() {
         </Route>
 
         {/* Unauth Page redirect if any other page try to go in by admin or user which they are not auhtenticated to */}
+        <Route path="/unauth-page" element={<UnauthPage />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
