@@ -13,10 +13,18 @@ import ShoppingAccount from "./pages/view-shopping/account";
 import ShoppingCheckout from "./pages/view-shopping/checkout";
 import ShoppingHome from "./pages/view-shopping/home";
 import ShoppingListing from "./pages/view-shopping/listing";
+import CheckAuth from "./components/common/check-auth";
 
 function App() {
-  const isAuthenticated = false;
-  const user = null;
+  // const isAuthenticated = false;
+  // const user = null;
+
+  //  test with dummy default value
+  const isAuthenticated = true;
+  const user = {
+    name: "aayush",
+    role: "admin",
+  };
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -72,13 +80,9 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
-          <Route path="paypal-return" element={<PaypalReturnPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage />} />
-          <Route path="search" element={<SearchProducts />} />
         </Route>
 
         {/* Unauth Page redirect if any other page try to go in by admin or user which they are not auhtenticated to */}
-        <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
