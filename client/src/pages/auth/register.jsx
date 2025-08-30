@@ -4,6 +4,7 @@ import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const initialState = {
   userName: "",
@@ -16,21 +17,25 @@ function AuthRegister() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const { toast } = useToast();
+
   function onSubmit(event) {
     event.preventDefault();
     dispatch(registerUser(formData)).then((data) => {
       console.log(data);
       // data?.payload?.success checking from auth-controller.js(registerUser fucntionality) and message is also taking from that controller fucntionality
       if (data?.payload?.success) {
-        toast({
-          title: data?.payload?.message,
-        });
+        // toast({
+        //   title: data?.payload?.message,
+        // });
+        toast.success(data?.payload?.message);
         navigate("/auth/login");
       } else {
-        toast({
-          title: data?.payload?.message,
-          variant: "destructive",
-        });
+        // toast({
+        //   title: data?.payload?.message,
+        //   variant: "destructive",
+        // });
+        toast.error(data?.payload?.message);
       }
     });
   }
