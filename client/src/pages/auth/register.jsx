@@ -20,7 +20,7 @@ function AuthRegister() {
     event.preventDefault();
     dispatch(registerUser(formData)).then((data) => {
       console.log(data);
-
+      // data?.payload?.success checking from auth-controller.js(registerUser fucntionality) and message is also taking from that controller fucntionality
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,
