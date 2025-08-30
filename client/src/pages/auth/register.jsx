@@ -18,8 +18,20 @@ function AuthRegister() {
   const navigate = useNavigate();
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(registerUser(formData)).then(() => {
-      navigate("/auth/login");
+    dispatch(registerUser(formData)).then((data) => {
+      console.log(data);
+
+      if (data?.payload?.success) {
+        toast({
+          title: data?.payload?.message,
+        });
+        navigate("/auth/login");
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
+      }
     });
   }
 
