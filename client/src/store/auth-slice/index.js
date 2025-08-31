@@ -54,8 +54,9 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        console.log(action); //then can be predictable action.payload.user
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isAuthenticated = false;
       })
       .addCase(loginUser.rejected, (state, action) => {

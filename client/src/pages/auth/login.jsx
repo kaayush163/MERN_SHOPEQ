@@ -4,6 +4,7 @@ import { loginFormControls } from "@/config";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const initialState = {
   email: "",
@@ -17,19 +18,21 @@ function AuthLogin() {
 
   function onSubmit(event) {
     event.preventDefault();
-
-    // dispatch(loginUser(formData)).then((data) => {
-    //   if (data?.payload?.success) {
-    //     toast({
-    //       title: data?.payload?.message,
-    //     });
-    //   } else {
-    //     toast({
-    //       title: data?.payload?.message,
-    //       variant: "destructive",
-    //     });
-    //   }
-    // });
+    dispatch(loginUser(formData)).then((data) => {
+      console.log(data);
+      if (data?.payload?.success) {
+        // toast({
+        //   title: data?.payload?.message,
+        // });
+        toast.success(data?.payload?.message);
+      } else {
+        // toast({
+        //   title: data?.payload?.message,
+        //   variant: "destructive",
+        // });
+        toast.error(data?.payload?.message);
+      }
+    });
   }
 
   return (
