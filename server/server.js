@@ -3,11 +3,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
+const connectDB = require("./configs/db.js");
+require("dotenv").config();
 
-mongoose
-  .connect("db_url")
-  .then(() => console.log("MongoDB connected"))
-  .catch((error) => console.log(error));
+connectDB();
+// mongoose
+//   .connect("db_url")
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((error) => console.log(error));
 
 const app = express();
 const PORT = process.env.PORT || 5000;
