@@ -15,7 +15,8 @@ import ShoppingHome from "./pages/view-shopping/home";
 import ShoppingListing from "./pages/view-shopping/listing";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "./store/auth-slice";
 
 function App() {
   // const isAuthenticated = false;
@@ -29,6 +30,12 @@ function App() {
   // };
 
   const { user, isAuthenticated } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
