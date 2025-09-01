@@ -15,10 +15,11 @@ import ShoppingHome from "./pages/view-shopping/home";
 import ShoppingListing from "./pages/view-shopping/listing";
 import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
+import { useSelector } from "react-redux";
 
 function App() {
-  const isAuthenticated = false;
-  const user = null;
+  // const isAuthenticated = false;
+  // const user = null;
 
   //  test with dummy default value
   // const isAuthenticated = true;
@@ -26,6 +27,8 @@ function App() {
   //   name: "aayush",
   //   role: "admin",
   // };
+
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">

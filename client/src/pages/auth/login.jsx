@@ -1,5 +1,6 @@
 import CommonForm from "@/components/common/form";
 import { loginFormControls } from "@/config";
+import { loginUser } from "@/store/auth-slice";
 // import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -13,7 +14,7 @@ const initialState = {
 
 function AuthLogin() {
   const [formData, setFormData] = useState(initialState);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const { toast } = useToast();
 
   function onSubmit(event) {
