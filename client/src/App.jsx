@@ -17,6 +17,8 @@ import CheckAuth from "./components/common/check-auth";
 import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
+import { useEffect } from "react";
+import { Skeleton } from "./components/ui/skeleton";
 
 function App() {
   // const isAuthenticated = false;

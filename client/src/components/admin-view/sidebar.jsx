@@ -2,12 +2,19 @@ import {
   BadgeCheck,
   ChartNoAxesCombined,
   LayoutDashboard,
-  Sheet,
   ShoppingBasket,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 const adminSidebarMenuItems = [
   {
     id: "dashboard",
@@ -51,7 +58,7 @@ function MenuItems({ setOpen }) {
   );
 }
 
-function AdminSidebar() {
+function AdminSidebar({ open, setOpen }) {
   const navigate = useNavigate();
 
   return (
