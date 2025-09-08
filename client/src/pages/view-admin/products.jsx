@@ -1,14 +1,17 @@
+import CommonForm from "@/components/common/form";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 function AdminProducts() {
   const [openCreateProductsDialog, setOpenCreateProductsDialog] =
     useState(false);
+  const [formData, setFormData] = useState(initialFormData);
+
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
@@ -29,6 +32,17 @@ function AdminProducts() {
               {currentEditedId !== null ? "Edit Product" : "Add New Product"}
             </SheetTitle>
           </SheetHeader>
+
+          <div className="py-6">
+            <CommonForm
+              onSubmit={onSubmit}
+              formData={formData}
+              setFormData={setFormData}
+              buttonText={currentEditedId !== null ? "Edit" : "Add"}
+              formControls={addProductFormElements}
+              isBtnDisabled={!isFormValid()}
+            />
+          </div>
         </SheetContent>
       </Sheet>
     </Fragment>
