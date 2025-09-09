@@ -36,6 +36,15 @@ function ProductImageUpload({
     if (droppedFile) setImageFile(droppedFile);
   }
 
+  function handleRemoveImage() {
+    setImageFile(null);
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }
+
+  console.log(imageFile, "imageFile");
+
   return (
     <div
       className={`w-full  mt-4 ${isCustomStyling ? "" : "max-w-md mx-auto"}`}
