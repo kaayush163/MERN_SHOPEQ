@@ -1,3 +1,4 @@
+import ProductImageUpload from "@/components/admin-view/image-upload";
 import CommonForm from "@/components/common/form";
 import {
   Sheet,

@@ -16,6 +16,16 @@ function ProductImageUpload({
   isEditMode,
   isCustomStyling = false,
 }) {
+  const inputRef = useRef(null);
+
+  function handleImageFileChange(event) {
+    console.log(event.target.files, "event.target.files");
+    const selectedFile = event.target.files?.[0];
+    console.log(selectedFile);
+
+    if (selectedFile) setImageFile(selectedFile);
+  }
+
   return (
     <div
       className={`w-full  mt-4 ${isCustomStyling ? "" : "max-w-md mx-auto"}`}
