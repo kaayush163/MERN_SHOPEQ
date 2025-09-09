@@ -26,6 +26,16 @@ function ProductImageUpload({
     if (selectedFile) setImageFile(selectedFile);
   }
 
+  function handleDragOver(event) {
+    event.preventDefault();
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+    const droppedFile = event.dataTransfer.files?.[0];
+    if (droppedFile) setImageFile(droppedFile);
+  }
+
   return (
     <div
       className={`w-full  mt-4 ${isCustomStyling ? "" : "max-w-md mx-auto"}`}
