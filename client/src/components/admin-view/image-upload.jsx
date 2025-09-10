@@ -26,6 +26,7 @@ function ProductImageUpload({
     if (selectedFile) setImageFile(selectedFile);
   }
 
+  //drag and drop image from local computer window is possible
   function handleDragOver(event) {
     event.preventDefault();
   }
