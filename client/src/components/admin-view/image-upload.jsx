@@ -46,6 +46,10 @@ function ProductImageUpload({
 
   console.log(imageFile, "imageFile");
 
+  useEffect(() => {
+    if (imageFile !== null) uploadImageToCloudinary();
+  }, [imageFile]);
+
   return (
     <div
       className={`w-full  mt-4 ${isCustomStyling ? "" : "max-w-md mx-auto"}`}
