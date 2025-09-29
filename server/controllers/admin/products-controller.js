@@ -128,6 +128,31 @@ const editProduct = async (req, res) => {
   }
 };
 
+//delete a product
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
+
+    if (!product)
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+
+    res.status(200).json({
+      success: true,
+      message: "Product delete successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Error occured",
+    });
+  }
+};
+
 module.exports = {
   handleImageUpload,
   addProduct,
