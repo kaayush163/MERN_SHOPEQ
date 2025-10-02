@@ -1,4 +1,4 @@
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent, CardFooter } from "../ui/card";
 
 function AdminProductTile({ product }) {
   return (
@@ -27,6 +27,18 @@ function AdminProductTile({ product }) {
             ) : null}
           </div>
         </CardContent>
+        <CardFooter className="flex justify-between items-center">
+          <Button
+            onClick={() => {
+              setOpenCreateProductsDialog(true);
+              setCurrentEditedId(product?._id);
+              setFormData(product);
+            }}
+          >
+            Edit
+          </Button>
+          <Button onClick={() => handleDelete(product?._id)}>Delete</Button>
+        </CardFooter>
       </div>
     </Card>
   );
