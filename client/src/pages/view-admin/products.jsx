@@ -6,7 +6,9 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Fragment, useState } from "react";
+import { fetchAllProducts } from "@/store/admin/products-slice";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialFormData = {
   image: null,
@@ -27,6 +29,18 @@ function AdminProducts() {
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  // state.adminProducts taken from store reducer name as same as it is
+  const { productList } = useSelector((state) => state.adminProducts);
+  const dispatch = useDispatch();
+
+  function onSubmit(event) {
+    event.preventDefault();
+  }
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
+  console.log(productList, "productList");
 
   return (
     <Fragment>
