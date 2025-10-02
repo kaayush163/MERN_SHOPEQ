@@ -6,7 +6,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { fetchAllProducts } from "@/store/admin/products-slice";
+import { addNewProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -32,15 +32,37 @@ function AdminProducts() {
   // state.adminProducts taken from store reducer name as same as it is
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   function onSubmit(event) {
     event.preventDefault();
+
+    dispatch(addNewProduct({ ...formData, image: uploadedImageUrl })).then(
+      (data) => {
+        console.log(data);
+        if (data?.payload?.success) {
+          setOpenCreateProductsDialog(false);
+          setFormData(initialFormData);
+          setUploadedImageUrl("");
+          setImageFile(null);
+          dispatch(fetchAllProducts());
+          toast({
+            title: "Product add successfully",
+          });
+        }
+      }
+    );
   }
 
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
+
   console.log(productList, "productList");
+  console.log(
+    uploadedImageUrl,
+    "uploadedImageUrl when upload and get urk from cloudinary"
+  );
 
   return (
     <Fragment>
