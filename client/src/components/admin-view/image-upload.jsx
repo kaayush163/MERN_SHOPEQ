@@ -86,6 +86,7 @@ function ProductImageUpload({
           ref={inputRef}
           onChange={handleImageFileChange}
           disabled={isEditMode}
+          // during edit Image upload should be disabled because image we are not going to edit only the details of it.
         />
         {!imageFile ? (
           <Label

@@ -27,9 +27,11 @@ function AdminProducts() {
   const [openCreateProductsDialog, setOpenCreateProductsDialog] =
     useState(false);
   const [formData, setFormData] = useState(initialFormData);
-  const [imageLoadingState, setImageLoadingState] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [imageLoadingState, setImageLoadingState] = useState(false);
+  const [currentEditedId, setCurrentEditedId] = useState(null);
+
   // state.adminProducts taken from store reducer name as same as it is
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
