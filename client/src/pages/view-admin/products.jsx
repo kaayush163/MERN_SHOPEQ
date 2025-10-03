@@ -91,6 +91,9 @@ function AdminProducts() {
         open={openCreateProductsDialog}
         onOpenChange={() => {
           setOpenCreateProductsDialog(false);
+          setCurrentEditedId(null);
+          setFormData(initialFormData);
+          // this will edit mode detail removed when addNewProduct button clicked otherwise edit details will still be in populated state shown
         }}
       >
         <SheetContent side="right" className="overflow-auto">
