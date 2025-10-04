@@ -66,6 +66,7 @@ function AdminProducts() {
     uploadedImageUrl,
     "uploadedImageUrl when upload and get urk from cloudinary"
   );
+  console.log(formData, "formData"); //when doing something edit details at every moment it will show on console.log the new formData
 
   return (
     <Fragment>
@@ -93,7 +94,7 @@ function AdminProducts() {
           setOpenCreateProductsDialog(false);
           setCurrentEditedId(null);
           setFormData(initialFormData);
-          // this will edit mode detail removed when addNewProduct button clicked otherwise edit details will still be in populated state shown
+          // this will edit mode detail removed when addNewProduct button clicked otherwise edit details will still be in populated state shown if firsly clicked on any item edit button
         }}
       >
         <SheetContent side="right" className="overflow-auto">
