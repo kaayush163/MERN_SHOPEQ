@@ -101,6 +101,7 @@ function AdminProducts() {
           <SheetHeader>
             <SheetTitle>
               {currentEditedId !== null ? "Edit Product" : "Add New Product"}
+              {/* if editing then Edit Product should show instead of Add New Product */}
             </SheetTitle>
           </SheetHeader>
 
@@ -120,6 +121,7 @@ function AdminProducts() {
               formData={formData}
               setFormData={setFormData}
               buttonText={currentEditedId !== null ? "Edit" : "Add"}
+              // edit/add button when to add on common form is based on clicking the specific button first add or edit
               formControls={addProductFormElements}
               isBtnDisabled={!isFormValid()}
             />
