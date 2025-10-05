@@ -115,6 +115,7 @@ function CommonForm({
         ))}
       </div>
       <Button disabled={isBtnDisabled} type="submit" className="mt-2 w-full">
+        {/* isBtnDisabled until the whole details for add and edit not filled up full it will be disabled */}
         {buttonText || "Submit"}
       </Button>
     </form>
