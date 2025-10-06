@@ -6,6 +6,7 @@ function AdminProductTile({
   setOpenCreateProductsDialog,
   setCurrentEditedId,
   handleDelete,
+  // as props we using here the handleDelete
 }) {
   return (
     <Card className="w-full max-w-sm mx-auto">

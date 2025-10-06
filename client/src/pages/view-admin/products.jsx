@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import {
   addNewProduct,
+  deleteProduct,
   editProduct,
   fetchAllProducts,
 } from "@/store/admin/products-slice";
@@ -80,6 +81,15 @@ function AdminProducts() {
         });
   }
 
+  function handleDelete(getCurrentProductId) {
+    console.log(getCurrentProductId, "getCurrentProductId");
+    dispatch(deleteProduct(getCurrentProductId)).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchAllProducts());
+      }
+    });
+  }
+
   function isFormValid() {
     return Object.keys(formData)
       .filter((currentKey) => currentKey !== "averageReview")
@@ -114,6 +124,7 @@ function AdminProducts() {
                 setCurrentEditedId={setCurrentEditedId}
                 product={productItem}
                 handleDelete={handleDelete}
+                // handle delete function here
               />
             ))
           : null}
