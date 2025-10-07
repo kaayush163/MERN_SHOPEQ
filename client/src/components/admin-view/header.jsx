@@ -6,6 +6,7 @@ import { logoutUser } from "@/store/auth-slice";
 function AdminHeader({ setOpen }) {
   const dispatch = useDispatch();
 
+  //handle logout here on clicking the button logout
   function handleLogout() {
     dispatch(logoutUser());
   }

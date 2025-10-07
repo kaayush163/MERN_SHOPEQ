@@ -54,6 +54,7 @@ export const checkAuth = createAsyncThunk(
   }
 );
 
+//logout create async thunk
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
 
