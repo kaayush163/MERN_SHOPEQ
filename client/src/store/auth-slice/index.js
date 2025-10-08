@@ -61,6 +61,7 @@ export const logoutUser = createAsyncThunk(
   async () => {
     const response = await axios.post(
       "http://localhost:5000/api/auth/logout",
+      //need to keep empty this form data then only post will work of axios and token will clear out from application cookies
       {},
       {
         withCredentials: true,
