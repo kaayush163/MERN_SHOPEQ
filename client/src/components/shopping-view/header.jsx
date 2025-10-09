@@ -1,4 +1,7 @@
-import { HousePlug } from "lucide-react";
+import { HousePlug, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
 
 function ShoppingHeader() {
   return (
@@ -9,6 +12,18 @@ function ShoppingHeader() {
           <HousePlug className="h-6 w-6" />
           <span className="font-bold">Ecommerce</span>
         </Link>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="lg:hidden">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Toggle header menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-full max-w-xs">
+            <MenuItems />
+            <HeaderRightContent />
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
