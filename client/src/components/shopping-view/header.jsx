@@ -28,6 +28,7 @@ function ShoppingHeader() {
         <div className="hidden lg:block">
           <HeaderRightContent />
         </div>
+        {isAuthenticated ? <div></div> : null}
       </div>
     </header>
   );
