@@ -2,6 +2,7 @@ import { HousePlug, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { useSelector } from "react-redux";
 
 function ShoppingHeader() {
   //isAuthenticated taken from redux store auth-slice/index.js
