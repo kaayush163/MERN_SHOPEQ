@@ -89,6 +89,7 @@ function HeaderRightContent() {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
+          {/* this avatar is for icon showing on top right side with name first and surname first letter */}
           <Avatar className="bg-black">
             <AvatarFallback className="bg-black text-white font-extrabold">
               {user?.userName[0].toUpperCase()}
@@ -141,7 +142,11 @@ function ShoppingHeader() {
           {/* <HeaderRightContent /> */}
           <MenuItems />
         </div>
-        {isAuthenticated ? <div></div> : null}
+        {isAuthenticated ? (
+          <div>
+            <HeaderRightContent />
+          </div>
+        ) : null}
       </div>
     </header>
   );
