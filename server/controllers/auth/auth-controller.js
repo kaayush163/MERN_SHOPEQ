@@ -63,6 +63,7 @@ const loginUser = async (req, res) => {
         role: checkUser.role,
         email: checkUser.email,
         userName: checkUser.userName,
+        // on login user username need to pass in token
       },
       process.env.CLIENT_SECRET_KEY,
       // "CLIENT_SECRET_KEY",

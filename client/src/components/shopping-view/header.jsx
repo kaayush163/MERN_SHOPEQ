@@ -1,9 +1,14 @@
-import { HousePlug, Menu } from "lucide-react";
+import { HousePlug, Menu, UserCog } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@radix-ui/react-dropdown-menu";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -100,9 +105,11 @@ function HeaderRightContent() {
           <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => navigate("/shop/account")}>
+            {/* User icon userCog from shadcn */}
             <UserCog className="mr-2 h-4 w-4" />
             Account
           </DropdownMenuItem>
+          {/* dropdown of right top side profile option with separtor to give space between each row */}
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
@@ -116,8 +123,8 @@ function HeaderRightContent() {
 
 function ShoppingHeader() {
   //isAuthenticated taken from redux store auth-slice/index.js
-  const { isAuthenticated } = useSelector((state) => state.auth);
-
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log(user, "user from shoping header");
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
