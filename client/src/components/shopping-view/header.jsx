@@ -1,14 +1,15 @@
-import { HousePlug, Menu, UserCog } from "lucide-react";
-import { Link } from "react-router-dom";
+import { HousePlug, LogOut, Menu, UserCog } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@radix-ui/react-dropdown-menu";
+import { logoutUser } from "@/store/auth-slice";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -104,8 +105,10 @@ function HeaderRightContent() {
         <DropdownMenuContent side="right" className="w-56">
           <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {/* if click on account button of profile option dropdown menu then will go to account page */}
           <DropdownMenuItem onClick={() => navigate("/shop/account")}>
             {/* User icon userCog from shadcn */}
+            {/* margin right of 2 height of 4 width of 4 */}
             <UserCog className="mr-2 h-4 w-4" />
             Account
           </DropdownMenuItem>
