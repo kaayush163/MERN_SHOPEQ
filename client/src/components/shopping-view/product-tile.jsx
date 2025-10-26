@@ -1,5 +1,5 @@
 import { Badge } from "../ui/badge";
-import { Card } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 function ShoppingProductTile({ product }) {
   return (
@@ -25,6 +25,33 @@ function ShoppingProductTile({ product }) {
             </Badge>
           ) : null}
         </div>
+        <CardContent className="p-4">
+          <h2 className="text-xl font-bold mb-2">{product?.title}</h2>
+
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-[16px] text-muted-foreground">
+              {categoryOptionsMap[product?.category]}
+            </span>
+            <span className="text-[16px] text-muted-foreground">
+              {brandOptionsMap[product?.brand]}
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center mb-2">
+            <span
+              className={`${
+                product?.salePrice > 0 ? "line-through" : ""
+              } text-lg font-semibold text-primary`}
+            >
+              ${product?.price}
+            </span>
+            {product?.salePrice > 0 ? (
+              <span className="text-lg font-semibold text-primary">
+                ${product?.salePrice}
+              </span>
+            ) : null}
+          </div>
+        </CardContent>
       </div>
     </Card>
   );
