@@ -2,6 +2,8 @@ const Product = require("../../models/Product");
 
 const getFilteredProducts = async (req, res) => {
   try {
+    let filters = {};
+
     const products = await Product.find(filters).sort(sort);
 
     res.status(200).json({
