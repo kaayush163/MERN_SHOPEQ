@@ -1,11 +1,21 @@
 import ProductFilter from "@/components/shopping-view/filter";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { fetchAllProducts } from "@/store/admin/products-slice";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 function ShoppingListing() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchAllProducts());
   }, []);
 
   return (
