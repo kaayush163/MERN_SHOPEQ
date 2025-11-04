@@ -14,11 +14,13 @@ import { useDispatch } from "react-redux";
 
 function ShoppingListing() {
   const dispatch = useDispatch();
+  const { productList } = useSelector((state) => state.shopProducts); // shopProducts same name as in store
 
   useEffect(() => {
     dispatch(fetchAllFilteredProducts());
   }, [dispatch]);
 
+  console.log(productList, "productList");
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
       <ProductFilter filters={filters} handleFilter={handleFilter} />
