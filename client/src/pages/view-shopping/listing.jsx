@@ -7,7 +7,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { fetchAllProducts } from "@/store/admin/products-slice";
+// import { fetchAllProducts } from "@/store/admin/products-slice";
+import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -15,8 +16,8 @@ function ShoppingListing() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, []);
+    dispatch(fetchAllFilteredProducts());
+  }, [dispatch]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
