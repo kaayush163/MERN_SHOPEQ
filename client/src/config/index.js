@@ -167,6 +167,14 @@ export const shoppingViewHeaderMenuItems = [
   },
 ];
 
+export const categoryOptionsMap = {
+  men: "Men",
+  women: "Women",
+  kids: "Kids",
+  accessories: "Accessories",
+  footwear: "Footwear",
+};
+
 export const filterOptions = {
   category: [
     { id: "men", label: "Men" },
