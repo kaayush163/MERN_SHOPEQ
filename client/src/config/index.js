@@ -175,6 +175,15 @@ export const categoryOptionsMap = {
   footwear: "Footwear",
 };
 
+export const brandOptionsMap = {
+  nike: "Nike",
+  adidas: "Adidas",
+  puma: "Puma",
+  levi: "Levi",
+  zara: "Zara",
+  "h&m": "H&M",
+};
+
 export const filterOptions = {
   category: [
     { id: "men", label: "Men" },
