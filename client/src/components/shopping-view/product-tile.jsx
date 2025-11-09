@@ -29,6 +29,7 @@ function ShoppingProductTile({ product }) {
         <CardContent className="p-4">
           <h2 className="text-xl font-bold mb-2">{product?.title}</h2>
 
+          {/* instead of writing text-sm we write text-[16px] */}
           <div className="flex justify-between items-center mb-2">
             <span className="text-[16px] text-muted-foreground">
               {categoryOptionsMap[product?.category]}
