@@ -18,6 +18,10 @@ function ShoppingListing() {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
 
+  function handleSort(value) {
+    setSort(value);
+  }
+
   useEffect(() => {
     dispatch(fetchAllFilteredProducts());
   }, [dispatch]);
