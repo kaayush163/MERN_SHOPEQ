@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 function ShoppingListing() {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.shopProducts); // shopProducts same name as in store
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState(null);
 
   useEffect(() => {
     dispatch(fetchAllFilteredProducts());
