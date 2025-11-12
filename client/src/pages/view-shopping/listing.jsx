@@ -19,7 +19,14 @@ function ShoppingListing() {
   const [sort, setSort] = useState(null);
 
   function handleSort(value) {
+    console.log(value);
+    // this will set the sort by values price low to high, price high to low, title a to z and title z to a
+
     setSort(value);
+  }
+
+  function handleFilter(getSelectionId, getCurrentOptions) {
+    console.log(getSelectionId, getCurrentOptions);
   }
 
   useEffect(() => {
