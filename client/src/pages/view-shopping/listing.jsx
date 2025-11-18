@@ -38,7 +38,6 @@ function ShoppingListing() {
         ...cpyFilters,
         [getSectionId]: [getCurrentOption],
       };
-      console.log(cpyFilters, "cpyFilters");
     } else {
       const indexOfCurrentOption =
         cpyFilters[getSectionId].indexOf(getCurrentOption);
@@ -48,15 +47,26 @@ function ShoppingListing() {
       else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1);
     }
 
+    console.log(cpyFilters, "cpyFilters");
+
     setFilters(cpyFilters);
+    // sessionStorage set to get it even after refreshing the page the same filters
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
+
+  // price-lowtoigh will be selcted by default on refresh
+  useEffect(() => {
+    setSort("price-lowtohigh");
+    // on refresh we can get filters (the previous saved state filter everytime)
+    setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
+  }, [categorySearchParam]);
 
   useEffect(() => {
     dispatch(fetchAllFilteredProducts());
   }, [dispatch]);
 
   console.log(productList, "productList");
+  console.log(filters, "filters applied");
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
       <ProductFilter filters={filters} handleFilter={handleFilter} />
