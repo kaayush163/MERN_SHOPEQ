@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 function ShoppingListing() {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.shopProducts); // shopProducts same name as in store
+  // useState for filters should be empty object instead of null
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
 
@@ -27,6 +28,28 @@ function ShoppingListing() {
 
   function handleFilter(getSelectionId, getCurrentOptions) {
     console.log(getSelectionId, getCurrentOptions);
+
+    // here spread operator is necessary to take filter in object if added new key with the coirresponding maintaining previous state as well
+    let cpyFilters = { ...filters };
+    const indexOfCurrentSection = Object.keys(cpyFilters).indexOf(getSectionId);
+
+    if (indexOfCurrentSection === -1) {
+      cpyFilters = {
+        ...cpyFilters,
+        [getSectionId]: [getCurrentOption],
+      };
+      console.log(cpyFilters, "cpyFilters");
+    } else {
+      const indexOfCurrentOption =
+        cpyFilters[getSectionId].indexOf(getCurrentOption);
+
+      if (indexOfCurrentOption === -1)
+        cpyFilters[getSectionId].push(getCurrentOption);
+      else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1);
+    }
+
+    setFilters(cpyFilters);
+    sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
 
   useEffect(() => {
