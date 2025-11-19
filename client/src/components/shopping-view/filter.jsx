@@ -18,6 +18,9 @@ function ProductFilter({ filters, handleFilter }) {
               <div className="grid gap-2 mt-2">
                 {filterOptions[keyItem].map((option) => (
                   <Label className="flex font-medium items-center gap-2 ">
+                    {/* fixing the checkbox to showcase the tick marks even after refresh */}
+                    {/* filter[keyItem] is category and brand */}
+                    {/* and also checking indexOf(option.id) > -1 means men and women present or not */}
                     <Checkbox
                       checked={
                         filters &&
