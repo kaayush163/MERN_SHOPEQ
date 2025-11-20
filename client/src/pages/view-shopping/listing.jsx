@@ -18,6 +18,7 @@ function ShoppingListing() {
   // useState for filters should be empty object instead of null
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function handleSort(value) {
     console.log(value);
@@ -62,11 +63,20 @@ function ShoppingListing() {
   }, [categorySearchParam]);
 
   useEffect(() => {
+    if (filters && Object.keys(filters).length > 0) {
+      const createQueryString = createSearchParamsHelper(filters);
+      setSearchParams(new URLSearchParams(createQueryString));
+    }
+  }, [filters]);
+
+  useEffect(() => {
     dispatch(fetchAllFilteredProducts());
   }, [dispatch]);
 
   console.log(productList, "productList");
   console.log(filters, "filters applied");
+  console.log(searchParams, "search Params ");
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
       <ProductFilter filters={filters} handleFilter={handleFilter} />
