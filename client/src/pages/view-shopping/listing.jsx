@@ -11,7 +11,23 @@ import {
 import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
+function createSearchParamsHelper(filterParams) {
+  const queryParams = [];
+
+  for (const [key, value] of Object.entries(filterParams)) {
+    if (Array.isArray(value) && value.length > 0) {
+      const paramValue = value.join(",");
+
+      queryParams.push(`${key}=${encodeURIComponent(paramValue)}`);
+    }
+  }
+
+  console.log(queryParams, "queryParams");
+
+  return queryParams.join("&");
+}
 function ShoppingListing() {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.shopProducts); // shopProducts same name as in store
