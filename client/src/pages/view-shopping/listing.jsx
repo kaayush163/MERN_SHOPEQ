@@ -13,9 +13,11 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
+// this is for on ur showing categories http://localhost:8000/men&women&short
 function createSearchParamsHelper(filterParams) {
   const queryParams = [];
 
+  // when taking both [key,value] we will take Object.entries instead of Object.keys
   for (const [key, value] of Object.entries(filterParams)) {
     if (Array.isArray(value) && value.length > 0) {
       const paramValue = value.join(",");
