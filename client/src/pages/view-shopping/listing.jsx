@@ -87,9 +87,13 @@ function ShoppingListing() {
     }
   }, [filters]);
 
+  // here fethc filteredProducts is we are getting from products-slice
   useEffect(() => {
-    dispatch(fetchAllFilteredProducts());
-  }, [dispatch]);
+    if (filters !== null && sort !== null)
+      dispatch(
+        fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
+      );
+  }, [dispatch, sort, filters]);
 
   console.log(productList, "productList");
   console.log(filters, "filters applied");
