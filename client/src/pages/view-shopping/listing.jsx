@@ -9,7 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 // import { fetchAllProducts } from "@/store/admin/products-slice";
-import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
+import {
+  fetchAllFilteredProducts,
+  fetchProductDetails,
+} from "@/store/shop/products-slice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -33,7 +36,9 @@ function createSearchParamsHelper(filterParams) {
 }
 function ShoppingListing() {
   const dispatch = useDispatch();
-  const { productList } = useSelector((state) => state.shopProducts); // shopProducts same name as in store
+  const { productList, productDetails } = useSelector(
+    (state) => state.shopProducts
+  ); // shopProducts same name as in store
   // useState for filters should be empty object instead of null
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
@@ -74,6 +79,12 @@ function ShoppingListing() {
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
 
+  // gettign product details on conosle if clicking any product of shoping view
+  function handleGetProductDetails(getCurrentProductId) {
+    console.log(getCurrentProductId);
+    dispatch(fetchProductDetails(getCurrentProductId));
+  }
+
   // price-lowtoigh will be selcted by default on refresh
   useEffect(() => {
     setSort("price-lowtohigh");
@@ -99,7 +110,7 @@ function ShoppingListing() {
   console.log(productList, "productList");
   console.log(filters, "filters applied");
   console.log(searchParams, "search Params ");
-
+  console.log(productDetails, "productDetails");
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
       <ProductFilter filters={filters} handleFilter={handleFilter} />
