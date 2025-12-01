@@ -13,6 +13,14 @@ function ProductDetailsDialog({ open, setOpen }) {
             className="aspect-square w-full object-cover"
           />
         </div>
+        <div className="">
+          <div>
+            <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1>
+            <p className="text-muted-foreground text-2xl mb-5 mt-4">
+              {productDetails?.description}
+            </p>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
