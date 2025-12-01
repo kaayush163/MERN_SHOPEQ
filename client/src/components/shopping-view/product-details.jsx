@@ -1,4 +1,6 @@
 import { Dialog, DialogContent } from "@radix-ui/react-dialog";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { StarIcon } from "lucide-react";
 
 function ProductDetailsDialog({ open, setOpen }) {
   return (
@@ -48,6 +50,18 @@ function ProductDetailsDialog({ open, setOpen }) {
               <Avatar className="w-10 h-10 border">
                 <AvatarFallback>AAYUSH</AvatarFallback>
               </Avatar>
+              <div className="grid gap-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-bold">Aayush</h3>
+                </div>
+                <div className="flex items-center gap-0.5">
+                  <StarIcon className="h-4 w-4 text-yellow-500" />
+                  <StarRatingComponent rating={reviewItem?.reviewValue} />
+                </div>
+                <p className="text-muted-foreground">
+                  {reviewItem.reviewMessage}
+                </p>
+              </div>
             </div>
           </div>
         </div>
