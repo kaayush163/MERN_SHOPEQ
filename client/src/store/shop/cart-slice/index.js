@@ -22,6 +22,17 @@ export const addToCart = createAsyncThunk(
   }
 );
 
+export const fetchCartItems = createAsyncThunk(
+  "cart/fetchCartItems",
+  async (userId) => {
+    const response = await axios.get(
+      `http://localhost:5000/api/shop/cart/get/${userId}`
+    );
+
+    return response.data;
+  }
+);
+
 const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState,
@@ -36,6 +47,17 @@ const shoppingCartSlice = createSlice({
         state.cartItems = action.payload.data;
       })
       .addCase(addToCart.rejected, (state) => {
+        state.isLoading = false;
+        state.cartItems = [];
+      })
+      .addCase(fetchCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchCartItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.cartItems = action.payload.data;
+      })
+      .addCase(fetchCartItems.rejected, (state) => {
         state.isLoading = false;
         state.cartItems = [];
       });
