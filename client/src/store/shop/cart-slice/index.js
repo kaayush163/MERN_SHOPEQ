@@ -72,6 +72,7 @@ const shoppingCartSlice = createSlice({
       .addCase(addToCart.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
+        // from server data we are getting in res.status(200).json({success:true,data: {}})
       })
       .addCase(addToCart.rejected, (state) => {
         state.isLoading = false;
