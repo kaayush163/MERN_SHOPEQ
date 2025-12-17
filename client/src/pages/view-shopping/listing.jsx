@@ -41,6 +41,9 @@ function ShoppingListing() {
     (state) => state.shopProducts
   ); // shopProducts same name as in store
   // useState for filters should be empty object instead of null
+  const { user } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.shopCart);
+
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -85,6 +88,24 @@ function ShoppingListing() {
   function handleGetProductDetails(getCurrentProductId) {
     console.log(getCurrentProductId);
     dispatch(fetchProductDetails(getCurrentProductId));
+  }
+
+  function handleAddtoCart(getCurrentProductId, getTotalStock) {
+    dispatch(
+      addToCart({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      console.log("cart item data", data);
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user?.id));
+        toast({
+          title: "Product is added to cart",
+        });
+      }
+    });
   }
 
   // price-lowtoigh will be selcted by default on refresh
