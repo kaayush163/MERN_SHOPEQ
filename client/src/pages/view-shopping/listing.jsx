@@ -48,6 +48,7 @@ function ShoppingListing() {
   const [sort, setSort] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const { toast } = useToast();
 
   function handleSort(value) {
     console.log(value);
@@ -101,6 +102,7 @@ function ShoppingListing() {
       console.log("cart item data", data);
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id));
+        // after fetcing cart Items and shoiwng them with message toast
         toast({
           title: "Product is added to cart",
         });
