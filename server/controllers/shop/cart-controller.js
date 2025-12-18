@@ -62,6 +62,7 @@ const fetchCartItems = async (req, res) => {
       });
     }
 
+    // items not item whatever provided the key in model Cart.js
     const cart = await Cart.findOne({ userId }).populate({
       path: "items.productId",
       select: "image title price salePrice",

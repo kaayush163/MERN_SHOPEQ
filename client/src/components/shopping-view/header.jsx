@@ -68,7 +68,7 @@ function HeaderRightContent() {
     dispatch(fetchCartItems(user?.id));
   }, [dispatch]);
 
-  console.log(cartItems, "sangam");
+  console.log(cartItems, "aayush");
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
@@ -85,6 +85,7 @@ function HeaderRightContent() {
           </span>
           <span className="sr-only">User cart</span>
         </Button>
+        {/* Recieve the Cart Items */}
         <UserCartWrapper
           setOpenCartSheet={setOpenCartSheet}
           cartItems={
