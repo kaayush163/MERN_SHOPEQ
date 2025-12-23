@@ -190,6 +190,7 @@ const deleteCartItem = async (req, res) => {
       select: "image title price salePrice",
     });
 
+    console.log(cart, "aayush");
     if (!cart) {
       return res.status(404).json({
         success: false,

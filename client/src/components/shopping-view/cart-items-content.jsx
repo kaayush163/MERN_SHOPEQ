@@ -11,6 +11,7 @@ function UserCartItemsContent({ cartItem }) {
   const dispatch = useDispatch();
   const { toast } = useToast();
 
+  // Updating cart quantity
   function handleUpdateQuantity(getCartItem, typeOfAction) {
     if (typeOfAction == "plus") {
       let getCartItems = cartItems.items || [];
@@ -59,6 +60,7 @@ function UserCartItemsContent({ cartItem }) {
     });
   }
 
+  //handler fucntion for delete
   function handleCartItemDelete(getCartItem) {
     dispatch(
       deleteCartItem({ userId: user?.id, productId: getCartItem?.productId })
@@ -81,6 +83,8 @@ function UserCartItemsContent({ cartItem }) {
       <div className="flex-1">
         <h3 className="font-extrabold">{cartItem?.title}</h3>
         <div className="flex items-center gap-2 mt-1">
+          {/* minus updation for quantity items */}
+
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full"
@@ -92,6 +96,7 @@ function UserCartItemsContent({ cartItem }) {
             <span className="sr-only">Decrease</span>
           </Button>
           <span className="font-semibold">{cartItem?.quantity}</span>
+          {/* plus updation for quantity items */}
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full"
@@ -111,6 +116,7 @@ function UserCartItemsContent({ cartItem }) {
             cartItem?.quantity
           ).toFixed(2)}
         </p>
+        {/* Delete added  */}
         <Trash
           onClick={() => handleCartItemDelete(cartItem)}
           className="cursor-pointer mt-1"
