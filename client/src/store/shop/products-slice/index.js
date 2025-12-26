@@ -43,7 +43,12 @@ export const fetchProductDetails = createAsyncThunk(
 const shoppingProductSlice = createSlice({
   name: "shoppingProducts",
   initialState,
-  reducers: {},
+  // we added setProductDetails in reducer so that whenever we click on product details and go to home page and then again come to product details then it should not show product details instead it should get hide and show all products in one. page 8-10 to 8-11
+  reducers: {
+    setProductDetails: (state) => {
+      state.productDetails = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllFilteredProducts.pending, (state, action) => {
