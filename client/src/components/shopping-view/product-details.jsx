@@ -2,7 +2,29 @@ import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { StarIcon } from "lucide-react";
 
-function ProductDetailsDialog({ open, setOpen }) {
+function ProductDetailsDialog({ open, setOpen, productDetails }) {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { toast } = useToast();
+
+  function handleAddToCart(getCurrentProductId, getTotalStock) {
+    dispatch(
+      addToCart({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      console.log("cart item data", data);
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user?.id));
+        // after fetcing cart Items and shoiwng them with message toast
+        toast({
+          title: "Product is added to cart",
+        });
+      }
+    });
+  }
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
@@ -47,7 +69,14 @@ function ProductDetailsDialog({ open, setOpen }) {
             </span>
           </div>
           <div className="mt-5 mb-5">
-            <Button className="w-full">Add to Cart</Button>
+            <Button
+              className="w-full"
+              onClick={() =>
+                handleAddToCart(productDetails?._id, productDetails?.totalStock)
+              }
+            >
+              Add to Cart
+            </Button>
           </div>
         </div>
         <Separator />

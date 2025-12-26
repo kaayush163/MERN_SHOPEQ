@@ -16,6 +16,7 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
               : currentItem?.price) *
               currentItem?.quantity,
           0
+          // initial value 0
         )
       : 0;
 
