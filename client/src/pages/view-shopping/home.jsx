@@ -15,6 +15,13 @@ function ShoppingHome() {
             className="absolute w-full h-full object-cover opacity-0 animate-fadeIn"
           />
         ))}
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
+        >
+          <ChevronLeftIcon className="w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
