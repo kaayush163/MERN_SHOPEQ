@@ -1,6 +1,7 @@
 import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { StarIcon } from "lucide-react";
+import { setProductDetails } from "@/store/shop/products-slice";
 
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const dispatch = useDispatch();
@@ -25,6 +26,15 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       }
     });
   }
+
+  function handleDialogClose() {
+    setOpen(false);
+    // in reducers of product slice we ghave given name setProductDetails
+    dispatch(setProductDetails());
+    setRating(0);
+    setReviewMsg("");
+  }
+
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
