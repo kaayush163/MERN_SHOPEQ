@@ -1,3 +1,4 @@
+import { useState } from "react";
 import bannerOne from "../../assets/banner-1.webp";
 import bannerTwo from "../../assets/banner-2.webp";
 import bannerThree from "../../assets/banner-3.webp";
@@ -11,6 +12,8 @@ const categoriesWithIcon = [
 ];
 
 function ShoppingHome() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [bannerOne, bannerTwo, bannerThree];
   return (
     <div className="flex flex-col min-h-screen">
@@ -26,6 +29,13 @@ function ShoppingHome() {
         <Button
           variant="outline"
           size="icon"
+          onClick={() =>
+            setCurrentSlide(
+              (prevSlide) =>
+                (prevSlide - 1 + featureImageList.length) %
+                featureImageList.length
+            )
+          }
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
         >
           <ChevronLeftIcon className="w-4 h-4" />
