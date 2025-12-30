@@ -23,7 +23,9 @@ function ShoppingHome() {
             key={index}
             src={slide}
             alt={`Slide ${index + 1}`}
-            className="absolute w-full h-full object-cover opacity-0 animate-fadeIn"
+            className={`${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
           />
         ))}
         <Button
