@@ -22,6 +22,13 @@ function ShoppingHome() {
         >
           <ChevronLeftIcon className="w-4 h-4" />
         </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80"
+        >
+          <ChevronRightIcon className="w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
