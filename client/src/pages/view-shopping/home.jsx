@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import bannerOne from "../../assets/banner-1.webp";
 import bannerTwo from "../../assets/banner-2.webp";
 import bannerThree from "../../assets/banner-3.webp";
+import { useDispatch } from "react-redux";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -13,6 +14,12 @@ const categoriesWithIcon = [
 
 function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { productList, productDetails } = useSelector(
+    (state) => state.shopProducts
+  );
+  const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
 
   const slides = [bannerOne, bannerTwo, bannerThree];
 
@@ -24,6 +31,17 @@ function ShoppingHome() {
 
     return () => clearInterval(timer);
   }, [featureImageList]);
+
+  useEffect(() => {
+    dispatch(
+      fetchAllFilteredProducts({
+        filterParams: {},
+        sortParams: "price-lowtohigh",
+      })
+    );
+  }, [dispatch]);
+
+  console.log("Product List:", productList);
 
   return (
     <div className="flex flex-col min-h-screen">
