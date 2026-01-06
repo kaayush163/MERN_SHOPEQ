@@ -3,6 +3,22 @@ import bannerOne from "../../assets/banner-1.webp";
 import bannerTwo from "../../assets/banner-2.webp";
 import bannerThree from "../../assets/banner-3.webp";
 import { useDispatch } from "react-redux";
+import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import {
+  Airplay,
+  BabyIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CloudLightning,
+  Heater,
+  Images,
+  Shirt,
+  ShirtIcon,
+  ShoppingBasket,
+  UmbrellaIcon,
+  WashingMachine,
+  WatchIcon,
+} from "lucide-react";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -10,6 +26,15 @@ const categoriesWithIcon = [
   { id: "kids", label: "Kids", icon: BabyIcon },
   { id: "accessories", label: "Accessories", icon: WatchIcon },
   { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+];
+
+const brandsWithIcon = [
+  { id: "nike", label: "Nike", icon: Shirt },
+  { id: "adidas", label: "Adidas", icon: WashingMachine },
+  { id: "puma", label: "Puma", icon: ShoppingBasket },
+  { id: "levi", label: "Levi's", icon: Airplay },
+  { id: "zara", label: "Zara", icon: Images },
+  { id: "h&m", label: "H&M", icon: Heater },
 ];
 
 function ShoppingHome() {
@@ -122,6 +147,25 @@ function ShoppingHome() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Feature Products
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {productList && productList.length > 0
+              ? productList.map((productItem) => (
+                  <ShoppingProductTile
+                    handleGetProductDetails={handleGetProductDetails}
+                    product={productItem}
+                    handleAddtoCart={handleAddtoCart}
+                  />
+                ))
+              : null}
           </div>
         </div>
       </section>
