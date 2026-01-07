@@ -45,8 +45,22 @@ function ShoppingHome() {
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const slides = [bannerOne, bannerTwo, bannerThree];
+
+  function handleNavigateToListingPage(getCurrentItem, section) {
+    sessionStorage.removeItem("filters");
+    // filters only given in listing page useEffect setFilters filters
+
+    const currentFilter = {
+      [section]: [getCurrentItem.id],
+      // .ifd is important oterwise object object is coming
+    };
+
+    sessionStorage.setItem("filters", JSON.stringify(currentFilter));
+    navigate(`/shop/listing`);
+  }
 
   // automatically change slide every 15 seconds
   useEffect(() => {
