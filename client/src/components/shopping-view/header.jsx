@@ -12,12 +12,14 @@ import {
 import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useState } from "react";
+import { Label } from "../ui/label";
 
 function MenuItems() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // Navigate to listing page with filters
   function handleNavigate(getCurrentMenuItem) {
     sessionStorage.removeItem("filters");
     const currentFilter =
@@ -36,6 +38,7 @@ function MenuItems() {
           new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
         )
       : navigate(getCurrentMenuItem.path);
+    // getting from index.js shopingViewHeaderMenuItem /shop/listing
   }
 
   return (
