@@ -19,6 +19,7 @@ import {
   WashingMachine,
   WatchIcon,
 } from "lucide-react";
+import { fetchProductDetails } from "@/store/shop/products-slice";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -60,6 +61,11 @@ function ShoppingHome() {
 
     sessionStorage.setItem("filters", JSON.stringify(currentFilter));
     navigate(`/shop/listing`);
+  }
+
+  function handleGetProductDetails(getCurrentProductId) {
+    console.log(getCurrentProductId);
+    dispatch(fetchProductDetails(getCurrentProductId));
   }
 
   // automatically change slide every 15 seconds
