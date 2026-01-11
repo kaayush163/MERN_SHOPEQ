@@ -68,6 +68,25 @@ function ShoppingHome() {
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
+  function handleAddtoCart(getCurrentProductId, getTotalStock) {
+    dispatch(
+      addToCart({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      console.log("cart item data", data);
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user?.id));
+        // after fetcing cart Items and shoiwng them with message toast
+        toast({
+          title: "Product is added to cart",
+        });
+      }
+    });
+  }
+
   // automatically change slide every 15 seconds
   useEffect(() => {
     const timer = setInterval(() => {
@@ -180,6 +199,7 @@ function ShoppingHome() {
             {productList && productList.length > 0
               ? productList.map((productItem) => (
                   <ShoppingProductTile
+                    // here passed handleGetDetails
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
                     handleAddtoCart={handleAddtoCart}
