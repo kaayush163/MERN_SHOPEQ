@@ -20,6 +20,7 @@ import {
   WatchIcon,
 } from "lucide-react";
 import { fetchProductDetails } from "@/store/shop/products-slice";
+import ProductDetailsDialog from "@/components/shopping-view/product-details";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -43,10 +44,14 @@ function ShoppingHome() {
   const { productList, productDetails } = useSelector(
     (state) => state.shopProducts
   );
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  // user takingt from store
   const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { toast } = useToast();
 
   const slides = [bannerOne, bannerTwo, bannerThree];
 
@@ -86,6 +91,10 @@ function ShoppingHome() {
       }
     });
   }
+
+  useEffect(() => {
+    if (productDetails !== null) setOpenDetailsDialog(true);
+  }, [productDetails]);
 
   // automatically change slide every 15 seconds
   useEffect(() => {
@@ -202,6 +211,7 @@ function ShoppingHome() {
                     // here passed handleGetDetails
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
+                    // handleAddToCart handling here in this component
                     handleAddtoCart={handleAddtoCart}
                   />
                 ))
@@ -209,6 +219,11 @@ function ShoppingHome() {
           </div>
         </div>
       </section>
+      <ProductDetailsDialog
+        open={openDetailsDialog}
+        setOpen={setOpenDetailsDialog}
+        productDetails={productDetails}
+      />
     </div>
   );
 }
