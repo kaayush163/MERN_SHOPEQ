@@ -35,4 +35,29 @@ const addAddress = async (req, res) => {
   }
 };
 
-module.exports = { addAddress };
+const fetchAllAddress = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "User id is required!",
+      });
+    }
+
+    const addressList = await Address.find({ userId });
+
+    res.status(200).json({
+      success: true,
+      data: addressList,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Error",
+    });
+  }
+};
+
+module.exports = { addAddress, fetchAllAddress };
