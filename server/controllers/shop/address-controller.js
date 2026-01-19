@@ -60,4 +60,46 @@ const fetchAllAddress = async (req, res) => {
   }
 };
 
-module.exports = { addAddress, fetchAllAddress };
+const editAddress = async (req, res) => {
+  try {
+    // taking from MongoDB the addressId that changed on newly created address
+    const { userId, addressId } = req.params;
+    const formData = req.body;
+
+    if (!userId || !addressId) {
+      return res.status(400).json({
+        success: false,
+        message: "User and address id is required!",
+      });
+    }
+
+    const address = await Address.findOneAndUpdate(
+      {
+        _id: addressId,
+        userId,
+      },
+      formData,
+      { new: true }
+    );
+
+    if (!address) {
+      return res.status(404).json({
+        success: false,
+        message: "Address not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: address,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Error",
+    });
+  }
+};
+
+module.exports = { addAddress, fetchAllAddress, editAddress };
