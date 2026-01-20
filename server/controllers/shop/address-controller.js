@@ -102,4 +102,36 @@ const editAddress = async (req, res) => {
   }
 };
 
-module.exports = { addAddress, fetchAllAddress, editAddress };
+const deleteAddress = async (req, res) => {
+  try {
+    const { userId, addressId } = req.params;
+    if (!userId || !addressId) {
+      return res.status(400).json({
+        success: false,
+        message: "User and address id is required!",
+      });
+    }
+
+    const address = await Address.findOneAndDelete({ _id: addressId, userId });
+
+    if (!address) {
+      return res.status(404).json({
+        success: false,
+        message: "Address not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Address deleted successfully",
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Error",
+    });
+  }
+};
+
+module.exports = { addAddress, fetchAllAddress, editAddress, deleteAddress };
