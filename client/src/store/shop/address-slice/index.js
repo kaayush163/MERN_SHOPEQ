@@ -19,9 +19,22 @@ export const addNewAddress = createAsyncThunk(
   }
 );
 
+export const fetchAllAddresses = createAsyncThunk(
+  "/addresses/fetchAllAddresses",
+  async (userId) => {
+    const response = await axios.get(
+      `http://localhost:5000/api/shop/address/get/${userId}`
+    );
+
+    return response.data;
+  }
+);
+
 const addressSlice = createSlice({
   name: "address",
   initialState,
   reducers: {},
   extraReducers: (builder) => {},
 });
+
+export default addressSlice.reducer;
