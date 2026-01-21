@@ -23,7 +23,20 @@ export const fetchAllAddresses = createAsyncThunk(
   "/addresses/fetchAllAddresses",
   async (userId) => {
     const response = await axios.get(
+      // match from server backend /api/shop/address/get/:userId
       `http://localhost:5000/api/shop/address/get/${userId}`
+    );
+
+    return response.data;
+  }
+);
+
+export const editaAddress = createAsyncThunk(
+  "/addresses/editaAddress",
+  async ({ userId, addressId, formData }) => {
+    const response = await axios.put(
+      `http://localhost:5000/api/shop/address/update/${userId}/${addressId}`,
+      formData
     );
 
     return response.data;
