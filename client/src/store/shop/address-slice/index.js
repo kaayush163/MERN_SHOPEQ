@@ -43,6 +43,17 @@ export const editaAddress = createAsyncThunk(
   }
 );
 
+export const deleteAddress = createAsyncThunk(
+  "/addresses/deleteAddress",
+  async ({ userId, addressId }) => {
+    const response = await axios.delete(
+      `http://localhost:5000/api/shop/address/delete/${userId}/${addressId}`
+    );
+
+    return response.data;
+  }
+);
+
 const addressSlice = createSlice({
   name: "address",
   initialState,
