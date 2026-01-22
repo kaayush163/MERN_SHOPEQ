@@ -58,7 +58,18 @@ const addressSlice = createSlice({
   name: "address",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(addNewAddress.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addNewAddress.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(addNewAddress.rejected, (state) => {
+        state.isLoading = false;
+      });
+  },
 });
 
 export default addressSlice.reducer;
