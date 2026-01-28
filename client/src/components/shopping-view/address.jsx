@@ -1,3 +1,4 @@
+import { addressFormControls } from "@/config";
 import CommonForm from "../common/form";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
@@ -25,7 +26,13 @@ function AddressCard({
         <CartTitle> Add New Address</CartTitle>
       </CardHeader>
       <CardContent classname="space-y-3">
-        <CommonForm />
+        <CommonForm
+          formControls={addressFormControls}
+          formData={formData}
+          setFormData={setFormData}
+          buttonText={"Add"}
+          onSubmit={handleManageAddress}
+        />
       </CardContent>
     </Card>
   );
