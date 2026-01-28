@@ -69,6 +69,12 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         });
   }
 
+  function isFormValid() {
+    return Object.keys(formData)
+      .map((key) => formData[key].trim() !== "")
+      .every((item) => item);
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -83,6 +89,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           setFormData={setFormData}
           buttonText={currentEditedId !== null ? "Edit" : "Add"}
           onSubmit={handleManageAddress}
+          isBtnDisabled={!isFormValid()}
         />
       </CardContent>
     </Card>
