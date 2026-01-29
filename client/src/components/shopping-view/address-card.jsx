@@ -11,6 +11,10 @@ function AddressCard({ addressInfo }) {
         <Label>Phone: {addressInfo?.phone}</Label>
         <Label>Notes: {addressInfo?.notes}</Label>
       </CardContent>
+      <CardFooter className="p-3 flex justify-between">
+        <Button>Edit</Button>
+        <Button>Delete</Button>
+      </CardFooter>
     </Card>
   );
 }
