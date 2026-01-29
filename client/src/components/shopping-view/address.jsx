@@ -24,6 +24,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   const [formData, setFormData] = useState(initialAddressFormData);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { addressList } = useSelector((state) => state.shopAddress);
 
   function handleManageAddress(event) {
     event.preventDefault();
@@ -34,7 +35,16 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         userId: user?.id,
       }),
     ).then((data) => {
+      // when adding new address in form and click add then data will show in console
       console.log(data);
+
+      if (data?.payload?.success) {
+        dispatch(fetchAllAddresses(user?.id));
+        setFormData(initialAddressFormData);
+        toast({
+          title: "Address added successfully",
+        });
+      }
     });
   }
 
@@ -43,6 +53,13 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       .map((key) => formData[key].trim() !== "")
       .every((item) => item);
   }
+
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(fetchAllAddresses(user?.id));
+    }
+  }, [user?.id, dispatch]);
+  console.log("addressList:", addressList);
 
   return (
     <Card>
