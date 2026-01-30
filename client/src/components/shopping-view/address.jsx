@@ -30,23 +30,37 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
   function handleManageAddress(event) {
     event.preventDefault();
 
-    dispatch(
-      addNewAddress({
-        ...formData,
-        userId: user?.id,
-      }),
-    ).then((data) => {
-      // when adding new address in form and click add then data will show in console
-      console.log(data);
-
-      if (data?.payload?.success) {
-        dispatch(fetchAllAddresses(user?.id));
-        setFormData(initialAddressFormData);
-        toast({
-          title: "Address added successfully",
+    currentEditedId !== null
+      ? dispatch(
+          editaAddress({
+            userId: user?.id,
+            addressId: currentEditedId,
+            formData,
+          }),
+        ).then((data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchAllAddresses(user?.id));
+            setCurrentEditedId(null);
+            setFormData(initialAddressFormData);
+            toast({
+              title: "Address updated successfully",
+            });
+          }
+        })
+      : dispatch(
+          addNewAddress({
+            ...formData,
+            userId: user?.id,
+          }),
+        ).then((data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchAllAddresses(user?.id));
+            setFormData(initialAddressFormData);
+            toast({
+              title: "Address added successfully",
+            });
+          }
         });
-      }
-    });
   }
 
   function handleDeleteAddress(getCurrentAddress) {
