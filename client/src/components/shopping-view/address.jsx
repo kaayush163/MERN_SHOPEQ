@@ -22,6 +22,7 @@ const initialAddressFormData = {
 
 function Address({ setCurrentSelectedAddress, selectedId }) {
   const [formData, setFormData] = useState(initialAddressFormData);
+  const [currentEditedId, setCurrent] = useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { addressList } = useSelector((state) => state.shopAddress);
@@ -45,6 +46,33 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           title: "Address added successfully",
         });
       }
+    });
+  }
+
+  function handleDeleteAddress(getCurrentAddress) {
+    // dispatching deleteaddress same named as of address slice with pasisng userId and addressId
+    dispatch(
+      deleteAddress({ userId: user?.id, addressId: getCurrentAddress._id }),
+    ).then((data) => {
+      console.log("delete address data:", data);
+      if (data?.payload?.success) {
+        dispatch(fetchAllAddresses(user?.id));
+        toast({
+          title: "Address deleted successfully",
+        });
+      }
+    });
+  }
+
+  function handleEditAddress(getCuurentAddress) {
+    setCurrentEditedId(getCuurentAddress?._id);
+    setFormData({
+      ...formData,
+      address: getCuurentAddress?.address,
+      city: getCuurentAddress?.city,
+      phone: getCuurentAddress?.phone,
+      pincode: getCuurentAddress?.pincode,
+      notes: getCuurentAddress?.notes,
     });
   }
 
@@ -72,6 +100,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
                 addressInfo={singleAddressItem}
                 handleEditAddress={handleEditAddress}
                 setCurrentSelectedAddress={setCurrentSelectedAddress}
+                // setCurrentEditedId={setCurrentEditedId}
+                // setFormData={setFormData}
               />
             ))
           : null}
