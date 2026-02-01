@@ -22,13 +22,25 @@ const initialAddressFormData = {
 
 function Address({ setCurrentSelectedAddress, selectedId }) {
   const [formData, setFormData] = useState(initialAddressFormData);
-  const [currentEditedId, setCurrent] = useState(null);
+  const [currentEditedId, setCurrentEditedId] = useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { addressList } = useSelector((state) => state.shopAddress);
+  const { toast } = useToast();
 
   function handleManageAddress(event) {
     event.preventDefault();
+
+    //Best part to understand if currentEditedId null condition not added then on edit address of 3 addresses
+    if (addressList.length >= 3 && currentEditedId === null) {
+      setFormData(initialAddressFormData);
+      toast({
+        title: "You can add max 3 addresses",
+        variant: "destructive",
+      });
+
+      return;
+    }
 
     currentEditedId !== null
       ? dispatch(
