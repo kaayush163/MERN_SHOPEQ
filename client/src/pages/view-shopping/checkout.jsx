@@ -39,6 +39,9 @@ function ShoppingCheckout() {
               <span className="font-bold">${totalCartAmount}</span>
             </div>
           </div>
+          <div className="mt-4 w-full">
+            <Button className="w-full">Checkout with Paypal</Button>
+          </div>
         </div>
       </div>
     </div>
