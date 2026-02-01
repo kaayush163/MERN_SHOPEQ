@@ -8,6 +8,18 @@ function ShoppingCheckout() {
   // fetching card Items from redux store
   const { cartItems } = useSelector((state) => state.shopCart);
 
+  const totalCartAmount =
+    cartItems && cartItems.items && cartItems.items.length > 0
+      ? cartItems.items.reduce(
+          (sum, currentItem) =>
+            sum +
+            (currentItem?.salePrice > 0
+              ? currentItem?.salePrice
+              : currentItem?.price) *
+              currentItem?.quantity,
+          0,
+        )
+      : 0;
   return (
     <div className="flex flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
@@ -27,7 +39,6 @@ function ShoppingCheckout() {
               <span className="font-bold">${totalCartAmount}</span>
             </div>
           </div>
-          <div className="mt-4 w-full"></div>
         </div>
       </div>
     </div>
