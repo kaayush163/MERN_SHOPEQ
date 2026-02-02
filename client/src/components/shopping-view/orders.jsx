@@ -1,5 +1,5 @@
-function Orders() {
+function ShoppingOrders() {
   return <div></div>;
 }
 
-export default Orders;
+export default ShoppingOrders;

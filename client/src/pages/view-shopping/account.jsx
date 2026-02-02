@@ -20,6 +20,7 @@ function ShoppingAccount() {
               <TabsTrigger value="address">Address</TabsTrigger>
             </TabsList>
             <TabsContent value="orders">
+              {/* soppingOrder component added */}
               <ShoppingOrders />
             </TabsContent>
             <TabsContent value="address">
