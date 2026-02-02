@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
-function AdminOrders() {
+function AdminOrdersView() {
   return (
     <Card>
       <CardHeader>
@@ -26,4 +26,4 @@ function AdminOrders() {
   );
 }
 
-export default AdminOrders;
+export default AdminOrdersView;
