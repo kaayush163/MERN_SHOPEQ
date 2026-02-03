@@ -20,7 +20,12 @@ function AdminOrderDetailsView() {
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="grid gap-6">
-        <div className="grid gap-2"></div>
+        <div className="grid gap-2">
+          <div className="flex mt-6 items-center justify-between">
+            <p className="font-medium">Order ID</p>
+            <Label>123456</Label>
+          </div>
+        </div>
       </div>
     </DialogContent>
   );
