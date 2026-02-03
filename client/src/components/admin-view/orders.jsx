@@ -57,7 +57,7 @@ function AdminOrdersView() {
                   >
                     View Details
                   </Button>
-                  <AdminOrderDetailsView orderDetails={orderDetails} />
+                  <AdminOrderDetailsView />
                 </Dialog>
               </TableCell>
             </TableRow>
