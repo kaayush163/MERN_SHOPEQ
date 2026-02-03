@@ -46,6 +46,23 @@ function AdminOrderDetailsView() {
             <Label>In Process </Label>
           </div>
         </div>
+        <Separator />
+        <div className="grid gap-4">
+          <div className="grid gap-2">
+            <div className="font-medium">Order Details</div>
+            <ul className="grid gap-3">
+              {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
+                ? orderDetails?.cartItems.map((item) => (
+                    <li className="flex items-center justify-between">
+                      <span>Title: {item.title}</span>
+                      <span>Quantity: {item.quantity}</span>
+                      <span>Price: ${item.price}</span>
+                    </li>
+                  ))
+                : null}
+            </ul>
+          </div>
+        </div>
       </div>
     </DialogContent>
   );
