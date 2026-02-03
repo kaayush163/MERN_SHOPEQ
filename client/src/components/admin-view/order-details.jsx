@@ -76,6 +76,24 @@ function AdminOrderDetailsView() {
             </div>
           </div>
         </div>
+        <div>
+          <CommonForm
+            formControls={[
+              {
+                label: "Order Status",
+                name: "status",
+                componentType: "select",
+                options: [
+                  { id: "pending", label: "Pending" },
+                  { id: "inProcess", label: "In Process" },
+                  { id: "inShipping", label: "In Shipping" },
+                  { id: "delivered", label: "Delivered" },
+                  { id: "rejected", label: "Rejected" },
+                ],
+              },
+            ]}
+          />
+        </div>
       </div>
     </DialogContent>
   );
