@@ -17,6 +17,8 @@ const initialFormData = {
 };
 
 function AdminOrderDetailsView() {
+  const [formData, setFormData] = useState(initialFormData);
+
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="grid gap-6">
@@ -92,6 +94,10 @@ function AdminOrderDetailsView() {
                 ],
               },
             ]}
+            formData={formData}
+            setFormData={setFormData}
+            buttonText={"Update Order Status"}
+            onSubmit={handleUpdateStatus}
           />
         </div>
       </div>
