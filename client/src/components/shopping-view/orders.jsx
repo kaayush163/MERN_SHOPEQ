@@ -1,5 +1,28 @@
+import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Dialog } from "../ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import ShoppingOrderDetailsView from "./order-details";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllOrdersByUserId,
+  getOrderDetails,
+  resetOrderDetails,
+} from "@/store/shop/order-slice";
+import { Badge } from "../ui/badge";
+
 function ShoppingOrders() {
-  eturn(
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  
+  return(
     <Card>
       <CardHeader>
         <CardTitle>Order History</CardTitle>
@@ -17,6 +40,27 @@ function ShoppingOrders() {
               </TableHead>
             </TableRow>
           </TableHeader>
+          <TableBody>
+            
+                  <TableRow>
+                    <TableCell>12345</TableCell>
+                    <TableCell>06/02/2026</TableCell>
+                    <TableCell>In Process</TableCell>
+                    <TableCell>${orderItem?.totalAmount}</TableCell>
+                    <TableCell>
+                      <Dialog
+                        open={openDetailsDialog}
+                        onOpenChange={() => {
+                          setOpenDetailsDialog(false);
+                        }}
+                      >
+                        
+                        <ShoppingOrderDetailsView orderDetails={orderDetails} />
+                      </Dialog>
+                    </TableCell>
+                  </TableRow>
+                
+          </TableBody>
         </Table>
       </CardContent>
     </Card>,
