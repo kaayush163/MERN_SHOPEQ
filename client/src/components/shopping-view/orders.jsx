@@ -21,8 +21,8 @@ import { Badge } from "../ui/badge";
 
 function ShoppingOrders() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-  
-  return(
+
+  return (
     <Card>
       <CardHeader>
         <CardTitle>Order History</CardTitle>
@@ -41,29 +41,32 @@ function ShoppingOrders() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            
-                  <TableRow>
-                    <TableCell>12345</TableCell>
-                    <TableCell>06/02/2026</TableCell>
-                    <TableCell>In Process</TableCell>
-                    <TableCell>${orderItem?.totalAmount}</TableCell>
-                    <TableCell>
-                      <Dialog
-                        open={openDetailsDialog}
-                        onOpenChange={() => {
-                          setOpenDetailsDialog(false);
-                        }}
-                      >
-                        
-                        <ShoppingOrderDetailsView orderDetails={orderDetails} />
-                      </Dialog>
-                    </TableCell>
-                  </TableRow>
-                
+            <TableRow>
+              <TableCell>12345</TableCell>
+              <TableCell>06/02/2026</TableCell>
+              <TableCell>In Process</TableCell>
+              <TableCell>$1000</TableCell>
+              <TableCell>
+                <Dialog
+                  open={openDetailsDialog}
+                  onOpenChange={() => {
+                    setOpenDetailsDialog(false);
+                  }}
+                >
+                  <Button
+                    onClick={() => handleFetchOrderDetails(orderItem?._id)}
+                  >
+                    View Details
+                  </Button>
+
+                  <ShoppingOrderDetailsView orderDetails={orderDetails} />
+                </Dialog>
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </CardContent>
-    </Card>,
+    </Card>
   );
 }
 
