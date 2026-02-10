@@ -3,6 +3,7 @@ const Order = require("../../models/Order");
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
 
+//this will only create order not making successfull for now
 const createOrder = async (req, res) => {
   try {
     //Order model fields fetching
