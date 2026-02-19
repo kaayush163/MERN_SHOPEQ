@@ -20,3 +20,28 @@ export const createNewOrder = createAsyncThunk(
     return response.data;
   },
 );
+
+const shoppingOrderSlice = createSlice({
+  name: "shoppingOrderSlice",
+  initialState,
+  reducers: {
+    resetOrderDetails: (state) => {
+      state.orderDetails = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createNewOrder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createNewOrder.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.approvalURL = action.payload.approvalURL;
+        state.orderId = action.payload.orderId;
+        sessionStorage.setItem(
+          "currentOrderId",
+          JSON.stringify(action.payload.orderId),
+        );
+      });
+  },
+});
