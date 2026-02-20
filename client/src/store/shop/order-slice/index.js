@@ -42,6 +42,11 @@ const shoppingOrderSlice = createSlice({
           "currentOrderId",
           JSON.stringify(action.payload.orderId),
         );
+      })
+      .addCase(createNewOrder.rejected, (state) => {
+        state.isLoading = false;
+        state.approvalURL = null;
+        state.orderId = null;
       });
   },
 });
