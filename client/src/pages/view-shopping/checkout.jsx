@@ -7,6 +7,42 @@ import { Button } from "@/components/ui/button";
 function ShoppingCheckout() {
   // fetching card Items from redux store
   const { cartItems } = useSelector((state) => state.shopCart);
+  const { user } = useSelector((state) => state.auth);
+
+  console.log(cartItems);
+
+  function handleInitiatePaypalPayment() {
+    const orderData = {
+      userId: user?.id,
+      cartId: cartItems?._id,
+      cartItems: cartItems.items.map((singleCartItem) => ({
+        productId: singleCartItem?.productId,
+        title: singleCartItem?.title,
+        image: singleCartItem?.image,
+        price:
+          singleCartItem?.salePrice > 0
+            ? singleCartItem?.salePrice
+            : singleCartItem?.price,
+        quantity: singleCartItem?.quantity,
+      })),
+      addressInfo: {
+        addressId: currentSelectedAddress?._id,
+        address: currentSelectedAddress?.address,
+        city: currentSelectedAddress?.city,
+        pincode: currentSelectedAddress?.pincode,
+        phone: currentSelectedAddress?.phone,
+        notes: currentSelectedAddress?.notes,
+      },
+      orderStatus: "pending",
+      paymentMethod: "paypal",
+      paymentStatus: "pending",
+      totalAmount: totalCartAmount,
+      orderDate: new Date(),
+      orderUpdateDate: new Date(),
+      paymentId: "",
+      payerId: "",
+    };
+  }
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -40,7 +76,9 @@ function ShoppingCheckout() {
             </div>
           </div>
           <div className="mt-4 w-full">
-            <Button className="w-full">Checkout with Paypal</Button>
+            <Button onClick={handleInitiatePaypalPayment} className="w-full">
+              Checkout with Paypal
+            </Button>
           </div>
         </div>
       </div>
