@@ -8,8 +8,22 @@ function ShoppingCheckout() {
   // fetching card Items from redux store
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
+  const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
 
-  console.log(cartItems);
+  console.log(cartItem, "cartItems");
+
+  const totalCartAmount =
+    cartItems && cartItems.items && cartItems.items.length > 0
+      ? cartItems.items.reduce(
+          (sum, currentItem) =>
+            sum +
+            (currentItem?.salePrice > 0
+              ? currentItem?.salePrice
+              : currentItem?.price) *
+              currentItem?.quantity,
+          0,
+        )
+      : 0;
 
   function handleInitiatePaypalPayment() {
     const orderData = {
@@ -17,7 +31,7 @@ function ShoppingCheckout() {
       cartId: cartItems?._id,
       cartItems: cartItems.items.map((singleCartItem) => ({
         productId: singleCartItem?.productId,
-        title: singleCartItem?.title,
+        title: singleCartItem?.title, //important to write with condition ?
         image: singleCartItem?.image,
         price:
           singleCartItem?.salePrice > 0
@@ -44,18 +58,6 @@ function ShoppingCheckout() {
     };
   }
 
-  const totalCartAmount =
-    cartItems && cartItems.items && cartItems.items.length > 0
-      ? cartItems.items.reduce(
-          (sum, currentItem) =>
-            sum +
-            (currentItem?.salePrice > 0
-              ? currentItem?.salePrice
-              : currentItem?.price) *
-              currentItem?.quantity,
-          0,
-        )
-      : 0;
   return (
     <div className="flex flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
