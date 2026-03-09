@@ -10,7 +10,7 @@ function ShoppingCheckout() {
   const { user } = useSelector((state) => state.auth);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
 
-  console.log(cartItem, "cartItems");
+  console.log(cartItems, "cartItems");
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
