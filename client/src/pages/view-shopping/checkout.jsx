@@ -9,9 +9,11 @@ function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
+  const [isPaymentStart, setIsPaymemntStart] = useState(false);
+  const dispatch = useDispatch();
 
   console.log(cartItems, "cartItems");
-
+  console.log(currentSelectedAddress, "currentSelectedAddress");
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
       ? cartItems.items.reduce(
@@ -27,6 +29,7 @@ function ShoppingCheckout() {
 
   function handleInitiatePaypalPayment() {
     const orderData = {
+      //see from order server model
       userId: user?.id,
       cartId: cartItems?._id,
       cartItems: cartItems.items.map((singleCartItem) => ({
@@ -56,6 +59,16 @@ function ShoppingCheckout() {
       paymentId: "",
       payerId: "",
     };
+    console.log(orderData, "orderData");
+
+    dispatch(createNewOrder(orderData)).then((data) => {
+      console.log(data, "aayush");
+      if (data?.payload?.success) {
+        setIsPaymemntStart(true);
+      } else {
+        setIsPaymemntStart(false);
+      }
+    });
   }
 
   return (
