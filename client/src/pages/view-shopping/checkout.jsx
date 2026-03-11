@@ -3,11 +3,13 @@ import img from "../../assets/account.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
+import { createNewOrder } from "@/store/shop/order-slice";
 
 function ShoppingCheckout() {
   // fetching card Items from redux store
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
+  const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
@@ -69,6 +71,10 @@ function ShoppingCheckout() {
         setIsPaymemntStart(false);
       }
     });
+  }
+
+  if (approvalURL) {
+    window.location.href = approvalURL;
   }
 
   return (
