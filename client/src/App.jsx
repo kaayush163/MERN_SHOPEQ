@@ -32,7 +32,7 @@ function App() {
   // };
 
   const { user, isAuthenticated, isLoading } = useSelector(
-    (state) => state.auth
+    (state) => state.auth,
   );
 
   const dispatch = useDispatch();
@@ -97,6 +97,7 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
         </Route>
 
         {/* Unauth Page redirect if any other page try to go in by admin or user which they are not auhtenticated to */}
