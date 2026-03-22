@@ -42,6 +42,7 @@ const shoppingOrderSlice = createSlice({
           "currentOrderId",
           JSON.stringify(action.payload.orderId),
         );
+        //imp to add sessionStorage when capturing a payment
       })
       .addCase(createNewOrder.rejected, (state) => {
         state.isLoading = false;

@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import { useEffect } from "react";
 import { Skeleton } from "./components/ui/skeleton";
+import PaypalReturnPage from "./pages/view-shopping/paypal-return";
 
 function App() {
   // const isAuthenticated = false;

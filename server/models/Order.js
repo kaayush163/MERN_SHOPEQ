@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema({
   userId: String,
   cartId: String,
+  // cartId imp to pass when remove order cart after placing the order
   cartItems: [
     {
       productId: String,
