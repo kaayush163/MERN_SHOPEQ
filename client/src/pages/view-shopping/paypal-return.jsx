@@ -5,7 +5,16 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 function PaypalReturnPage() {
-  return <Card></Card>;
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Processing Payment...Please wait!</CardTitle>
+      </CardHeader>
+    </Card>
+  );
 }
 
 export default PaypalReturnPage;
