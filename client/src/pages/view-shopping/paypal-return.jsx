@@ -9,8 +9,24 @@ function PaypalReturnPage() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const paymentId = params.get("paymentId");
-  const payerId = params.get("PayerID");
+  const payerId = params.get("PayerID"); //can be seen once the payment page opens and click on continue to review order
+
   const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
+
+  useEffect(() => {
+    if (paymentId && payerId) {
+      const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
+
+      dispatch(capturePayment({ paymentId, payerId, orderId })).then((data) => {
+        if (data?.payload?.success) {
+          sessionStorage.removeItem("currentOrderId");
+          window.location.href = "/shop/payment-success";
+        }
+      });
+    }
+  }, [paymentId, payerId, dispatch]);
+  //dependencies are paymentId and payerId because we want to trigger the effect when these values are available after the user is redirected back from PayPal
+
   return (
     <Card>
       <CardHeader>
