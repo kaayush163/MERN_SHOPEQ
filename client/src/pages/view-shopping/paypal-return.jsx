@@ -8,6 +8,9 @@ function PaypalReturnPage() {
   const dispatch = useDispatch();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
+  const paymentId = params.get("paymentId");
+  const payerId = params.get("PayerID");
+  const orderId = JSON.parse(sessionStorage.getItem("currentOrderId"));
   return (
     <Card>
       <CardHeader>
