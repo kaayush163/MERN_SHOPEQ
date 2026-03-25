@@ -47,6 +47,7 @@ function ShoppingCheckout() {
 
       return;
     }
+    //why we put currentselected address after cartItem.length for good practise
     const orderData = {
       //see from order server model
       userId: user?.id,

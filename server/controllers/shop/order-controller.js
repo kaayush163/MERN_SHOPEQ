@@ -149,7 +149,34 @@ const capturePayment = async (req, res) => {
   }
 };
 
+const getAllOrdersByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const orders = await Order.find({ userId });
+
+    if (!orders.length) {
+      return res.status(404).json({
+        success: false,
+        message: "No orders found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: orders,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Some error occured!",
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   capturePayment,
+  getAllOrdersByUser,
 };
