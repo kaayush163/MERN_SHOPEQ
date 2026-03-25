@@ -5,7 +5,7 @@ const initialState = {
   approvalURL: null,
   isLoading: false,
   orderId: null,
-  orderList: [],
+  orderList: [], //for getting orderList from server side and showcase on frontend UI
   orderDetails: null,
 };
 
@@ -31,6 +31,28 @@ export const capturePayment = createAsyncThunk(
         payerId,
         orderId,
       },
+    );
+
+    return response.data;
+  },
+);
+
+export const getAllOrdersByUserId = createAsyncThunk(
+  "/order/getAllOrdersByUserId",
+  async (userId) => {
+    const response = await axios.get(
+      `http://localhost:5000/api/shop/order/list/${userId}`,
+    );
+
+    return response.data;
+  },
+);
+
+export const getOrderDetails = createAsyncThunk(
+  "/order/getOrderDetails",
+  async (id) => {
+    const response = await axios.get(
+      `http://localhost:5000/api/shop/order/details/${id}`,
     );
 
     return response.data;
