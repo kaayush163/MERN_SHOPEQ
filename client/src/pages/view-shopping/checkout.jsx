@@ -13,6 +13,7 @@ function ShoppingCheckout() {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   console.log(cartItems, "cartItems");
   console.log(currentSelectedAddress, "currentSelectedAddress");
@@ -30,6 +31,22 @@ function ShoppingCheckout() {
       : 0;
 
   function handleInitiatePaypalPayment() {
+    if (cartItems.length === 0) {
+      toast({
+        title: "Your cart is empty. Please add items to proceed",
+        variant: "destructive",
+      });
+
+      return;
+    }
+    if (currentSelectedAddress === null) {
+      toast({
+        title: "Please select one address to proceed.",
+        variant: "destructive",
+      });
+
+      return;
+    }
     const orderData = {
       //see from order server model
       userId: user?.id,
