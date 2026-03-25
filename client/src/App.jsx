@@ -20,6 +20,7 @@ import { checkAuth } from "./store/auth-slice";
 import { useEffect } from "react";
 import { Skeleton } from "./components/ui/skeleton";
 import PaypalReturnPage from "./pages/view-shopping/paypal-return";
+import PaymentSuccessPage from "./pages/view-shopping/payment-success";
 
 function App() {
   // const isAuthenticated = false;
@@ -99,6 +100,7 @@ function App() {
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
         </Route>
 
         {/* Unauth Page redirect if any other page try to go in by admin or user which they are not auhtenticated to */}
