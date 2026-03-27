@@ -25,6 +25,10 @@ function ShoppingOrders() {
   const { user } = useSelector((state) => state.auth);
   const { orderList, orderDetails } = useSelector((state) => state.shopOrder); //order reducer
 
+  function handleFetchOrderDetails(getId) {
+    dispatch(getOrderDetails(getId));
+  }
+
   useEffect(() => {
     dispatch(getAllOrdersByUserId(user?.id));
   }, [dispatch]);
@@ -74,7 +78,6 @@ function ShoppingOrders() {
                         open={openDetailsDialog}
                         onOpenChange={() => {
                           setOpenDetailsDialog(false);
-                          dispatch(resetOrderDetails());
                         }}
                       >
                         <Button
