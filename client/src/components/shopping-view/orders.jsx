@@ -33,6 +33,10 @@ function ShoppingOrders() {
     dispatch(getAllOrdersByUserId(user?.id));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (orderDetails !== null) setOpenDetailsDialog(true);
+  }, [orderDetails]);
+
   console.log(orderDetails, "orderDetails");
 
   return (
