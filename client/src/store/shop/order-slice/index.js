@@ -64,6 +64,7 @@ const shoppingOrderSlice = createSlice({
   initialState,
   reducers: {
     resetOrderDetails: (state) => {
+      //imp to reset order details when we close the dialog
       state.orderDetails = null;
     },
   },
@@ -111,3 +112,7 @@ const shoppingOrderSlice = createSlice({
       });
   },
 });
+
+export const { resetOrderDetails } = shoppingOrderSlice.actions;
+
+export default shoppingOrderSlice.reducer;
