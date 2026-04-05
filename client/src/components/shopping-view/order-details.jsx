@@ -33,7 +33,19 @@ function ShoppingOrderDetailsView({ orderDetails }) {
           </div>
           <div className="flex mt-6 items-center justify-between">
             <p className="font-medium">Order Status</p>
-            <Label>In Process </Label>
+            <Label>
+              <Badge
+                className={`py-1 px-3 ${
+                  orderItem?.orderStatus === "confirmed"
+                    ? "bg-green-500"
+                    : orderItem?.orderStatus === "rejected"
+                      ? "bg-red-600"
+                      : "bg-black"
+                }`}
+              >
+                {orderItem?.orderStatus}
+              </Badge>{" "}
+            </Label>
           </div>
         </div>
         <Separator />
