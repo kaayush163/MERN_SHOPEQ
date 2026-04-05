@@ -21,6 +21,8 @@ import { Badge } from "../ui/badge";
 
 function AdminOrdersView() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+  const { orderList, orderDetails } = useSelector((state) => state.adminOrder); //this coming from initialState of order-slice from store folder
+  const dispatch = useDispatch();
 
   return (
     <Card>
