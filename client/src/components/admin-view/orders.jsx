@@ -24,6 +24,21 @@ function AdminOrdersView() {
   const { orderList, orderDetails } = useSelector((state) => state.adminOrder); //this coming from initialState of order-slice from store folder
   const dispatch = useDispatch();
 
+  function handleFetchOrderDetails(getId) {
+    dispatch(getOrderDetailsForAdmin(getId));
+    setOpenDetailsDialog(true);
+  }
+
+  useEffect(() => {
+    dispatch(getAllOrdersForAdmin());
+  }, [dispatch]);
+
+  console.log("orderList", orderList);
+  useEffect(() => {
+    if (orderDetails !== null) setOpenDetailsDialog(true);
+  }, [orderDetails]);
+
+  console.log("orderDetails", orderDetails);
   return (
     <Card>
       <CardHeader>
@@ -59,7 +74,7 @@ function AdminOrdersView() {
                   >
                     View Details
                   </Button>
-                  <AdminOrderDetailsView />
+                  <AdminOrderDetailsView orderDetails={orderDetails} />
                 </Dialog>
               </TableCell>
             </TableRow>
