@@ -67,6 +67,7 @@ function AdminOrdersView() {
                   open={openDetailsDialog}
                   onOpenChange={() => {
                     setOpenDetailsDialog(false);
+                    dispatch(resetOrderDetails());
                   }}
                 >
                   <Button

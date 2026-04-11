@@ -46,6 +46,7 @@ const adminOrderSlice = createSlice({
   name: "adminOrderSlice",
   initialState,
   reducers: {
+    //resentOrderDetails is used to reset the orderDetails state to null when the details dialog is closed. This ensures that when the dialog is reopened, it does not show stale data from the previous order.
     resetOrderDetails: (state) => {
       console.log("resetOrderDetails");
 

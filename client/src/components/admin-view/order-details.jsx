@@ -16,9 +16,9 @@ const initialFormData = {
   status: "",
 };
 
-function AdminOrderDetailsView() {
+function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
-
+  const { user } = useSelector((state) => state.auth);
   function handleUpdateStatus(event) {
     event.preventDefault();
     const { status } = formData;
@@ -61,9 +61,21 @@ function AdminOrderDetailsView() {
             <p className="font-medium">Payment Status</p>
             <Label>{orderDetails?.paymentStatus}</Label>
           </div>
-          <div className="flex mt-6 items-center justify-between">
+          <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Status</p>
-            <Label>In Process </Label>
+            <Label>
+              <Badge
+                className={`py-1 px-3 ${
+                  orderDetails?.orderStatus === "confirmed"
+                    ? "bg-green-500"
+                    : orderDetails?.orderStatus === "rejected"
+                      ? "bg-red-600"
+                      : "bg-black"
+                }`}
+              >
+                {orderDetails?.orderStatus}
+              </Badge>
+            </Label>
           </div>
         </div>
         <Separator />
@@ -96,6 +108,7 @@ function AdminOrderDetailsView() {
             </div>
           </div>
         </div>
+
         <div>
           <CommonForm
             formControls={[

@@ -31,20 +31,20 @@ function ShoppingOrderDetailsView({ orderDetails }) {
             <p className="font-medium">Payment Status</p>
             <Label>{orderDetails?.paymentStatus}</Label>
           </div>
-          <div className="flex mt-6 items-center justify-between">
+          <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Status</p>
             <Label>
               <Badge
                 className={`py-1 px-3 ${
-                  orderItem?.orderStatus === "confirmed"
+                  orderDetails?.orderStatus === "confirmed"
                     ? "bg-green-500"
-                    : orderItem?.orderStatus === "rejected"
+                    : orderDetails?.orderStatus === "rejected"
                       ? "bg-red-600"
                       : "bg-black"
                 }`}
               >
-                {orderItem?.orderStatus}
-              </Badge>{" "}
+                {orderDetails?.orderStatus}
+              </Badge>
             </Label>
           </div>
         </div>
