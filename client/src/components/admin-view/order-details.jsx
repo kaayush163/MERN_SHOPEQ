@@ -19,13 +19,19 @@ const initialFormData = {
 function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  console.log(orderDetails);
   function handleUpdateStatus(event) {
     event.preventDefault();
     const { status } = formData;
+    const { toast } = useToast();
+    console.log(formData); //by admin when chnaging status of order this will show in console
 
     dispatch(
       updateOrderStatus({ id: orderDetails?._id, orderStatus: status }),
     ).then((data) => {
+      console.log(data); //response from backend after updating order status
       if (data?.payload?.success) {
         dispatch(getOrderDetailsForAdmin(orderDetails?._id));
         dispatch(getAllOrdersForAdmin());
