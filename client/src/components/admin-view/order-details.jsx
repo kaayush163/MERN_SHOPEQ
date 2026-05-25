@@ -20,12 +20,12 @@ function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   console.log(orderDetails);
   function handleUpdateStatus(event) {
     event.preventDefault();
     const { status } = formData;
-    const { toast } = useToast();
     console.log(formData); //by admin when chnaging status of order this will show in console
 
     dispatch(

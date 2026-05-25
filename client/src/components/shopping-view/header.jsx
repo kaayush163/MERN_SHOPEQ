@@ -35,11 +35,12 @@ function MenuItems() {
 
     location.pathname.includes("listing") && currentFilter !== null
       ? setSearchParams(
-          new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
+          new URLSearchParams(`?category=${getCurrentMenuItem.id}`),
         )
       : navigate(getCurrentMenuItem.path);
     // getting from index.js shopingViewHeaderMenuItem /shop/listing
   }
+  // setSearchParams will set the ? category=electronics in url when click on electronics category and navigate will navigate to listing page when click on listing page and if already in listing page then only set the search params to filter the products based on category
 
   return (
     <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
